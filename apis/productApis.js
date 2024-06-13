@@ -4,7 +4,6 @@ const Product = require('../model/Product')
 const products_all = async (req, res) => {
     try {
         const products = await Product.find()
-        console.log("Data sent")
         res.json(products)
     } catch(error) {
         console.log("Error:-", error)
@@ -21,7 +20,7 @@ const insert_product = async (req, res) => {
     try {
         const savedProduct = await product.save()
         console.log('Product inserted')
-        res.send(savedProduct)
+        res.json({ 'insert': 'success', 'product': savedProduct})
     }
     catch (error) {
         res.status(400).send(error)
